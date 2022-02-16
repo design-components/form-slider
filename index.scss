@@ -1,0 +1,205 @@
+@use "sass:map";
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    --primary-color: #03A9F4;
+    --secondary-color: #{rgba(white, .2)};
+    --third-color: white;
+    --fourt-color: #F43648;
+    --five-color: #333;
+    --shadow: #{0 5px 45px rgba(black, .15)};
+}
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: var(--primary-color);
+    transition: .5s;
+    &.active{
+        background-color: var(--fourt-color);
+    }
+}
+
+.container{
+    position: relative;
+    width: 800px;
+    height: 500px;
+    margin: 20px;
+}
+.blueBg{
+    position: absolute;
+    top: 40px;
+    width: 100%;
+    height: 420px;
+    background-color: var(--secondary-color);
+    box-shadow: var(--shadow);
+
+    display: flex;
+    justify-content: center;
+
+    .box{
+        position: relative;
+        width: 50%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        h2{
+            color: var(--third-color);
+            font-size: 1.2em;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+
+        button{
+            cursor: pointer;
+            padding: 10px 20px;
+            background-color: var(--third-color);
+            font-size: 1rem;
+            font-weight: 500;
+            border:none;
+        }
+    }
+}
+
+
+.formBx{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background-color: var(--third-color);
+    border-radius: 20px;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: var(--shadow);
+    transition: .5s ease-in-out;
+    overflow: hidden;
+    &.active{
+        left: 50%;
+    }
+}
+
+
+.formBx .form{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 50px;
+    transition: .5s;
+    transition-delay: 0 ;
+
+    form{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        h3{
+            font-size: 1.5em;
+            color: var(--five-color);
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        input{
+            width: 100%;
+            margin-bottom: 20px;
+            padding: 10px;
+            outline:none;
+            font-size: 1rem;
+            border: 1px solid var(--five-color);
+            &[type="submit"]{
+                background-color: var(--primary-color);
+                border: none;
+                color: var(--third-color);
+                max-width: 100px;
+                cursor: pointer;
+            }
+        }
+
+        .forgot{
+            color: #333;
+        }
+    }
+}
+
+.formBx {
+    .signinForm form input[type="submit"]{
+        background-color: var(--primary-color);
+    }
+    .signupForm form input[type="submit"]{
+        background-color: var(--fourt-color);
+    }
+
+    .signinForm{
+        transition-delay: .25s;
+    }
+    .signupForm{
+        left: 100%;
+        transition-delay: 0s;
+    }
+
+    &.active{
+        .signinForm{
+            left: -100%;
+            transition-delay: 0s;
+        }
+        .signupForm{
+            left: 0%;
+            transition-delay: .25s;
+        }
+
+    }
+    
+}
+
+
+@media (max-width: 993px){
+    .container{
+        max-width: 400px;
+        height: 650px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .blueBg{
+            top: 0;
+            height: 100%;
+            .box{
+                position: absolute;
+                width: 100%;
+                height: 150px;
+                bottom: 0;
+                &.signin{
+                    top: 0;
+                }
+
+            }
+        }
+    }
+    .formBx{
+        width: 100%;
+        height: 500px;
+        top: 0;
+        box-shadow: none;
+        .form{
+            padding: 2rem 1.5rem;
+        }
+        &.active{
+            left: 0;
+            top: 150px;
+        }
+    }
+
+    
+    
+}
